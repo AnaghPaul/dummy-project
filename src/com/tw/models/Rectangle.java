@@ -1,7 +1,5 @@
 package com.tw.models;
 
-import java.awt.*;
-
 public class Rectangle {
     private final int length;
     private final int width;
