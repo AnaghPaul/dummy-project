@@ -1,4 +1,6 @@
-package models;
+package com.tw.models;
+
+import java.awt.*;
 
 public class Rectangle {
     private final int length;
@@ -11,5 +13,9 @@ public class Rectangle {
 
     public int area() {
         return  length * width;
+    }
+
+    public int perimeter() {
+        return  2 * (length + width);
     }
 }
