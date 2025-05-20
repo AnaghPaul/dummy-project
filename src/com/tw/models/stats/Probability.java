@@ -1,5 +1,7 @@
 package com.tw.models.stats;
 
+import com.tw.models.errors.InvalidInputException;
+
 public class Probability {
     private final double chance;
 
@@ -9,13 +11,13 @@ public class Probability {
 
     public static Probability init(double chance) {
         if(chance < 0 || chance > 1) {
-            throw new RuntimeException("incompatible inputs");
+//            throw new InvalidInputException();
         }
 
         return  new Probability(chance);
     }
 
-    public Probability complement() {
+    public Probability not() {
         return new Probability(1 - chance);
     }
 
@@ -30,7 +32,11 @@ public class Probability {
         return super.hashCode();
     }
 
-    public Probability and(Probability anotherProbability) {
-        return new Probability(this.chance * anotherProbability.chance);
+    public Probability and(Probability another) {
+        return new Probability(this.chance * another.chance);
+    }
+
+    public Probability or(Probability another) {
+        return not().and(another.not()).not();
     }
 }
